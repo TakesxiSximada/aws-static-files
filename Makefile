@@ -4,6 +4,9 @@ GITHUB_ORG_NAME :=
 GITHUB_REPO_NAME :=
 GITHUB_REPO :=
 CIRCLECI_TOKEN :=
+AWS_BUCKET_URL :=
+AWS_PROFILE :=
+
 
 include $(ENV_MK)
 
@@ -53,4 +56,4 @@ build:
 .PHONY: s3-upload
 s3-upload:
 	@# s3にファイルをuploadします。
-	aws s3 sync ./build s3://sximada-aws-static-files/ --acl public-read --profile aws-static-files
+	aws s3 sync ./build $(AWS_BUCKET_URL) --acl public-read --profile $(AWS_PROFILE)
