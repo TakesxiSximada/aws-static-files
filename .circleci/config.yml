@@ -7,12 +7,19 @@ jobs:
 
     steps:
       - checkout
+
       - run:
           name: Install yarn
           command: npm install -g yarn
+
       - run:
           name: Install dependencies
           command: yarn
+
       - run:
           name: Build statif files
-          command: yarn build
+          command: make build
+
+      - run:
+          name: Upload static files
+          command: make s3-upload

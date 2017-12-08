@@ -43,3 +43,14 @@ circleci-reset-environ:
 circleci-apply-environ:
 	@# CircleCIの環境変数を反映します。
 	$(CIRCLECLI) apply
+
+
+.PHONY: build
+build:
+	@# ビルドします。
+	yarn build
+
+.PHONY: s3-upload
+s3-upload:
+	@# s3にファイルをuploadします。
+	aws s3 sync ./build s3://sximada-aws-static-files/ --acl public-read --profile aws-static-files
