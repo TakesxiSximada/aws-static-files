@@ -68,4 +68,4 @@ build:
 .PHONY: s3-upload
 s3-upload:
 	@# s3にファイルをuploadします。
-	aws s3 sync ./build $(AWS_BUCKET_URL) --acl public-read --profile $(AWS_PROFILE)
+	aws s3 sync ./build $(AWS_BUCKET_URL) --acl public-read $(AWS_PROFILE)
