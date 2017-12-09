@@ -16,5 +16,9 @@ jobs:
           command: make build
 
       - run:
+          name: Copy env.mk
+          command: cp env.mk.example env.mk
+
+      - run:
           name: Upload static files
           command: make s3-upload
