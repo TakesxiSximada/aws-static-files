@@ -69,3 +69,9 @@ build:
 s3-upload:
 	@# s3にファイルをuploadします。
 	aws s3 sync ./build $(AWS_BUCKET_URL) --acl public-read $(AWS_PROFILE)
+
+
+.PHONY: open-web
+open-web:
+	@# Webサイトを開きます。
+	open http://sximada-aws-static-files.s3-website-ap-northeast-1.amazonaws.com
