@@ -23,11 +23,23 @@ setup-circleci-project:
 setup-circleci-token:
 	@# CirleCIのAPI Tokenを作成する
 	@if [ "$(CIRCLECI_TOKEN)" ] ; then \
-		echo "Already setup CIRCLECI_TOKEN."; \
+		echo "Already setup CIRCLECI_TOKEN."; \2
 	else \
 		open https://circleci.com/gh/$(GITHUB_REPO)/edit#api; \
 		echo "Edit CIRCLECI_TOKEN: $(ENV_MK)"; \
 	fi
+
+
+.PHONY: circleci-build-image
+circleci-build-image:
+	@# CircleCIのimageをbuildする
+	cd .circleci && docker build -t sximada/aws-static-files:latest .
+
+
+.PHONY: circleci-push-image
+circleci-push-image:
+	@# CircleCIのimageをbuildする
+	cd .circleci && docker push sximada/aws-static-files:latest
 
 
 .PHONY: circleci-get-environ
